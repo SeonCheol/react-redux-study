@@ -6,6 +6,7 @@ function getPostAPI(postId) {
     return axios.get(`http://jsonplaceholder.typicode.com/posts/${postId}`)
 }
 
+const GET_POST = 'GET_POST'
 const GET_POST_PENDING = 'GET_POST_PENDING'
 const GET_POST_SUCCESS = 'GET_POST_SUCCESS'
 const GET_POST_FAILURE = 'GET_POST_FAILURE'
@@ -14,6 +15,7 @@ const getPostPending = createAction(GET_POST_PENDING)
 const getPostSuccess = createAction(GET_POST_SUCCESS)
 const getPostFailure = createAction(GET_POST_FAILURE)
 
+/* redux thunk getPost
 export const getPost = (postId) => dispatch => {
     dispatch(getPostPending())
 
@@ -25,6 +27,13 @@ export const getPost = (postId) => dispatch => {
         throw err
     })
 }
+*/
+
+/* promise middleware */
+export const getPost = (postId) => ({
+    type: GET_POST,
+    payload: getPostAPI(postId)
+})
 
 const initialState = Map({
     pending: false,
